@@ -1,16 +1,8 @@
 # codlab3
 
-A new Flutter application.
+There are 3 tasks for homework.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+During the lesson, we use static GridView for showing content. But from the previous lesson, we know about builder. Your task is show "Add" button on the list screen and add a new image by a tap on the button.
+Show an image from the internet by URL.
+Write a title for app bar with a custom font.
+Good luck!

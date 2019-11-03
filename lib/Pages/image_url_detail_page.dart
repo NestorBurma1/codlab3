@@ -7,7 +7,13 @@ class ImageDetailsPageUrl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Details URL')),
+        appBar: AppBar(
+            title: const Text('Details URL',
+                style: TextStyle(
+                  color: Colors.yellowAccent,
+                  fontSize: 30.0,
+                  fontFamily: 'BowlbyOneSC',
+                ))),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(

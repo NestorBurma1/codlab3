@@ -10,9 +10,9 @@ class MyPage extends StatefulWidget {
   _MyPageState createState() => _MyPageState();
 }
 
-Ink _showImage(BuildContext context, String imageShow) {
+Ink _showImage(BuildContext context, Image imageShow) {
   return Ink.image(
-    image: AssetImage(imageShow),
+    image: imageShow.image,
     fit: BoxFit.cover,
     child: InkWell(onTap: () {
       Navigator.push<dynamic>(
@@ -41,40 +41,50 @@ void _showAlert(BuildContext context, String text) {
               child: const Text('CANCEL'),
               onPressed: () {
                 Navigator.of(context).pop();
-                textFieldController.text = 'https://picsum.photos/id/237/200/300';
+                textFieldController.text =
+                    'https://picsum.photos/id/237/200/300';
               },
             ),
             FlatButton(
-              child: const Text('Show'),
-              onPressed: () {
-                if (textFieldController.text.isNotEmpty) {
-                  Navigator.push<dynamic>(
-                    context,
-                    MaterialPageRoute<dynamic>(builder: (context) {
-                      return ImageDetailsPageUrl(image: textFieldController.text);
-                    }),
-                  );
-                }
-              })
+                child: const Text('Show and add'),
+                onPressed: () {
+                  if (textFieldController.text.isNotEmpty) {
+                    images.add(Image.network(textFieldController.text));
+                    Navigator.push<dynamic>(
+                      context,
+                      MaterialPageRoute<dynamic>(builder: (context) {
+                        return ImageDetailsPageUrl(
+                            image: textFieldController.text);
+                      }),
+                    );
+                  }
+                })
           ],
         );
       });
 }
 
-class _MyPageState extends State<MyPage> {
-  List<String> images = [
-    'resources/cats/cat1.jpg',
-    'resources/cats/cat2.jpg',
-    'resources/cats/cat3.jpg',
-    'resources/cats/cat4.jpg',
-    'resources/cats/cat5.jpg',
-  ];
+List images = <Image>[
+  Image.asset('resources/cats/cat1.jpg'),
+  Image.asset('resources/cats/cat2.jpg'),
+  Image.asset('resources/cats/cat3.jpg'),
+  Image.asset('resources/cats/cat4.jpg'),
+  Image.asset('resources/cats/cat5.jpg')
+];
 
+class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Center(
+          child: const Text('Cats grid',
+              style: TextStyle(
+                color: Colors.yellowAccent,
+                fontSize: 30.0,
+                fontFamily: 'BowlbyOneSC',
+              )),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -91,6 +101,7 @@ class _MyPageState extends State<MyPage> {
             return _showImage(context, images[index]);
           }),
     );
+
     // This trailing comma makes auto-formatting nicer for build methods.
   }
 }

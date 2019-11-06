@@ -1,25 +1,42 @@
-import 'package:codlab3/Pages/my_page.dart';
 import 'package:flutter/material.dart';
+
 class ImageDetailsPage extends StatelessWidget {
-  final String assetPath;
+  const ImageDetailsPage({Key key, this.assetPath}) : super(key: key);
+  final Image assetPath;
 
-  ImageDetailsPage({
-    Key key, @required this.assetPath
-  }) : assert(assetPath != null),
-        super(key: key);
-
+  Ink _showImage(BuildContext context, Image imageName) {
+    return Ink.image(
+      image: imageName.image,
+      fit: BoxFit.cover,
+      child: InkWell(onTap: () {
+        Navigator.push<dynamic>(
+          context,
+          MaterialPageRoute<dynamic>(
+              builder: (context) => ImageDetailsPage(assetPath: imageName)),
+        );
+      }),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Details'),),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: showImage(context, assetPath)
-    ),
+      appBar: AppBar(
+        title: Center(
+          child: const Text(
+            'Details',
+            style: TextStyle(
+              color: Colors.yellowAccent,
+              fontSize: 30.0,
+              fontFamily: 'BowlbyOneSC',
+            ),
+          ),
         ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(child: _showImage(context, assetPath)),
+      ),
     );
-
   }
 }
